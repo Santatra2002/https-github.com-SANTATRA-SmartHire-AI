@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+/* ============================================================
+   SmartHire AI — Design tokens
+   Palette construite à partir du bleu-nuit déjà présent dans
+   ton login (#1c3345), étendue à tout le site pour une
+   identité cohérente. Un seul accent vif (le "signal" teal)
+   réservé aux moments IA / matching.
+   ============================================================ */
+@theme {
+  /* Neutres — base sombre */
+  --color-ink: #0d1a26;      /* fond le plus sombre (hero, footer) */
+  --color-navy: #1c3345;     /* ta couleur de marque existante */
+  --color-slate: #35505f;    /* dégradé intermédiaire */
+  --color-fog: #7d8b96;      /* texte secondaire sur fond sombre */
+
+  /* Neutres — base claire */
+  --color-paper: #f4f6f5;    /* fond clair des pages internes (remplace bg-gray-100) */
+  --color-paper-dim: #e7ebe9;
+  --color-ash: #5b6b70;      /* texte secondaire sur fond clair */
+
+  /* Accent unique — réservé à l'IA / au matching */
+  --color-signal: #2fb8ac;       /* teal signal — % de compatibilité, CTA IA */
+  --color-signal-dim: #1f8377;
+  --color-gold: #e3a648;         /* réservé aux "meilleurs profils" / mise en avant */
+
+  /* États */
+  --color-danger: #d9695a;
+
+  /* Typographie */
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace; /* pour les scores/% */
+
+  --radius-card: 1rem;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-paper);
+  color: var(--color-navy);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-score {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Dégradé de marque réutilisable (hero, auth) */
+.brand-gradient {
+  background: linear-gradient(135deg, #7d8b96 0%, #35505f 40%, #1c3345 75%, #0d1a26 100%);
+}
+
+/* Respect du mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Anneau de focus visible, cohérent avec la marque */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+}
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-fade-in-delay-1 {
+  animation: fadeIn 0.5s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay-2 {
+  animation: fadeIn 0.5s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* ============================================
+   FONDS MODERNES AVEC EFFETS
+   ============================================ */
+   .dashboard-bg {
+    background: 
+      radial-gradient(ellipse at 10% 20%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.03) 0%, transparent 70%),
+      #f8fafc;
+  }
+  
+  .dashboard-bg-dark {
+    background: 
+      radial-gradient(ellipse at 10% 20%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 70%),
+      #0f172a;
+  }
+  
+  /* Effet de verre amélioré */
+  .glass-enhanced {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  }
+  
+  .glass-enhanced:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Cartes avec bordure colorée */
+  .card-accent-blue {
+    border-left: 4px solid #3b82f6;
+  }
+  
+  .card-accent-green {
+    border-left: 4px solid #10b981;
+  }
+  
+  .card-accent-purple {
+    border-left: 4px solid #8b5cf6;
+  }
+  
+  .card-accent-orange {
+    border-left: 4px solid #f59e0b;
+  }
+  
+  /* Gradient animé pour les cartes */
+  .card-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    transition: all 0.3s ease;
+  }
+  
+  .card-gradient:hover {
+    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(37, 99, 235, 0.12);
+  }
+  
+  /* Badges modernes */
+  .badge-modern {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .badge-blue-modern {
+    background: rgba(59, 130, 246, 0.12);
+    color: #2563eb;
+  }
+  
+  .badge-green-modern {
+    background: rgba(16, 185, 129, 0.12);
+    color: #059669;
+  }
+  
+  .badge-purple-modern {
+    background: rgba(139, 92, 246, 0.12);
+    color: #7c3aed;
+  }
+  
+  .badge-yellow-modern {
+    background: rgba(245, 158, 11, 0.12);
+    color: #d97706;
+  }
+  
+  .badge-red-modern {
+    background: rgba(239, 68, 68, 0.12);
+    color: #dc2626;
+  }
+  
+  /* Avatars avec anneau */
+  .avatar-ring {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+  }
+  
+  .avatar-ring::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  
+  /* Boutons flottants */
+  .btn-float {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-float::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .btn-float:hover::after {
+    opacity: 1;
+  }
