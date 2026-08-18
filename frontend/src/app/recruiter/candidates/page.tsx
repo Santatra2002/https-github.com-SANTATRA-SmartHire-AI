@@ -229,7 +229,8 @@ export default function RecruiterCandidatesPage() {
                   </div>
 
                   <div className="text-center ml-4">
-                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">{candidate.matchScore || candidate.score}%</div>
+                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+                    {candidate.matchScore}%</div>
                     <p className="text-sm text-gray-500">Compatibilité</p>
                   </div>
                 </div>
