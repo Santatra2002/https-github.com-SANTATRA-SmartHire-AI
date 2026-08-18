@@ -1,13 +1,14 @@
 // src/app/auth/reset-password/page.tsx
 'use client';
 
+import { Suspense } from 'react';
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import api from '../../../lib/api';
 import { Lock, Sparkles, ArrowLeft, Eye, EyeOff } from 'lucide-react';
 
-export default function ResetPasswordPage() {
+function ResetPasswordContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
@@ -63,8 +64,13 @@ export default function ResetPasswordPage() {
     }
   };
 
+  if (!token && !error) {
+    return <div>Chargement...</div>;
+  }
+
   return (
     <div className="min-h-screen relative bg-[#040a09] overflow-hidden">
+      {/* Fond avec halos */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-[#071412] via-[#040a09] to-black" />
         <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-teal-500/20 rounded-full blur-[120px]" />
@@ -182,5 +188,14 @@ export default function ResetPasswordPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// ⭐ Export avec Suspense
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen bg-[#040a09]">Chargement...</div>}>
+      <ResetPasswordContent />
+    </Suspense>
   );
 }
